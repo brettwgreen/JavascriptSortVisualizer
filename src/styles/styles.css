@@ -8,10 +8,11 @@ button {
 h2 {
 	margin: 0px;
 }
+
 .sortGroup {
 	position: relative;
 	float: left;
-	width: 230px;
+	width: 280px;
 	margin-left: 25px;
 	border: 1px solid #1588ed;
 	padding: 15px;
@@ -19,6 +20,24 @@ h2 {
 .data {
 	float: left;
 	margin-top: 10px;
+}
+fieldset {
+	border: 1px solid #666;
+	width: 180px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+fieldset > label {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	margin-right: 5px;
+	line-height: 25px;
+}
+legend {
+	font-weight: bold;
+	text-align: right;
 }
 .sortPanel {
 	position: absolute;

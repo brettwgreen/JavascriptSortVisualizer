@@ -13,13 +13,20 @@
 
   <body>
     <div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
-		<h2>Selection Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->
 			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
 			<div data-bind="visible: currentStart" class="indicator"></div>
 			<div class="clear"></div>
 			<!-- /ko -->
+		</div>
+		<div class="sortInfo">
+			<fieldset>
+				<legend>Selection Sort</legend>
+				<label>Average:</label>O(<i>n</i><sup>2</sup>)
+				<label>Worst:</label>O(<i>n</i><sup>2</sup>)
+				<label>Best:</label>O(<i>n</i><sup>2</sup>)
+			</fieldset>
 		</div>
 		<div class="sortPanel">
 			<br clear="all" /><br />
@@ -29,13 +36,20 @@
 		</div>
 	</div>
 	<div id="bubbleSort" class="sortGroup" data-bind="with: bubbleSort">
-		<h2>Bubble Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->
 			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
 			<div data-bind="visible: currentStart" class="indicator"></div>
 			<div class="clear"></div>
 			<!-- /ko -->
+		</div>
+		<div class="sortInfo">
+			<fieldset>
+				<legend>Bubble Sort</legend>
+				<label>Average:</label>O(<i>n</i><sup>2</sup>)
+				<label>Worst:</label>O(<i>n</i><sup>2</sup>)
+				<label>Best:</label>O(<i>n</i>)
+			</fieldset>
 		</div>
 		<div class="sortPanel">
 			<br clear="all" /><br />
@@ -45,13 +59,20 @@
 		</div>
 	</div>
 	<div id="quickSort" class="sortGroup" data-bind="with: quickSort">
-		<h2>Quick Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->
 			<div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
 			<div data-bind="visible: currentPivot" class="indicator"></div>
 			<div class="clear"></div>
 			<!-- /ko -->
+		</div>
+		<div class="sortInfo">
+			<fieldset>
+				<legend>QuickSort</legend>
+				<label>Average:</label>O(<i>n</i> log <i>n</i>)
+				<label>Worst:</label>O(<i>n</i><sup>2</sup>)
+				<label>Best:</label>O(<i>n</i> log <i>n</i>)
+			</fieldset>
 		</div>
 		<div class="sortPanel">
 			<br clear="all" /><br />

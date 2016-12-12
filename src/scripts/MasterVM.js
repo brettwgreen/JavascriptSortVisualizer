@@ -21,7 +21,16 @@ $(document).ready(function() {
 				numberOfElements--;
 			}
 			return nums;
-		};		
+		};	
+		self.getAscendingArray = function(numberOfElements) {
+			var nums = [];
+			var current = 0;			
+			while (current < numberOfElements) {
+				nums.push(current);
+				current++;
+			}
+			return nums;
+		};	
 		self.getNearlySortedArray = function(numberOfElements) {
 			var nums = [];
 			var current = 0;
@@ -68,6 +77,12 @@ $(document).ready(function() {
 			self.bubbleSort.setData(data);
 			self.quickSort.setData(data);
 		};
+		self.setAscending = function() {
+			var data = self.getAscendingArray(50);
+			self.selectionSort.setData(data);
+			self.bubbleSort.setData(data);
+			self.quickSort.setData(data);
+		};		
 		self.setNearlySorted = function() {
 			var data = self.getNearlySortedArray(50);
 			self.selectionSort.setData(data);

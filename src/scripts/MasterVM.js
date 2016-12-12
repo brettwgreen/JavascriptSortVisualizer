@@ -41,9 +41,9 @@ $(document).ready(function() {
 			var swapTotal = 5;
 			var swaps = 0;
 			while (swaps < swapTotal) {
-				var num1 = Math.ceil(Math.random() * numberOfElements);
-				var num2 = Math.ceil(Math.random() * numberOfElements);
-				if (num1 !== num2) {
+				var num1 = Math.ceil(Math.random() * (numberOfElements-1));
+				var num2 = num1+1;
+				if (num2 < numberOfElements) {
 					var temp = nums[num2];
 					nums[num2] = nums[num1];
 					nums[num1] = temp;

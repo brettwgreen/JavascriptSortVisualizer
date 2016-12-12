@@ -8,10 +8,11 @@
     <script src="scripts\SelectionSort.js"></script>
     <script src="scripts\BubbleSort.js"></script>
     <script src="scripts\QuickSort.js"></script>
+    <script src="scripts\MasterVM.js"></script>
   </head>
 
   <body>
-    <div id="selectionSort" class="sortGroup">
+    <div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
 	<h2>Selection Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->
@@ -26,7 +27,7 @@
 		<button data-bind="click: selectionSort">sort</button>
 		<button data-bind="click: init">scramble</button>
 	</div>
-	<div id="bubbleSort" class="sortGroup">
+	<div id="bubbleSort" class="sortGroup" data-bind="with: bubbleSort">
 		<h2>Bubble Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->
@@ -41,7 +42,7 @@
 		<button data-bind="click: bubbleSort">sort</button>
 		<button data-bind="click: init">scramble</button>	
 	</div>
-	<div id="quickSort" class="sortGroup">
+	<div id="quickSort" class="sortGroup" data-bind="with: quickSort">
 		<h2>Quick Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->

@@ -70,7 +70,8 @@ var BubbleSortVM = function() {
 				self.startBubbleSort();
 			}
 		};
-	self.bubbleSort = function() {
+	self.sort = function() {
+		console.log("started bubblesort at " + new Date());
 		self.startBubbleSort();
 	}
 	self.init();

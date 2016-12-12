@@ -9,7 +9,7 @@ var QuickSortVM = function() {
 	var self = this;
 	self.data = ko.observableArray([]);
 	self.elementCount = 50;
-	self.delay = ko.observable(50);
+	self.delay = ko.observable(10);
 	self.init = function() {
 		var count = 0;
 		var nums = [];
@@ -135,14 +135,12 @@ var QuickSortVM = function() {
 			endIndex].value();
 		self.data()[endIndex].currentPivot(
 			true);
-		console.log("start partion from " +
-			startIndex + " to " + (endIndex -
-				1) + ", pivot=" + pivotValue);
 		setTimeout(self.partition, self.delay(),
 			pivotValue, startIndex, endIndex -
 			1, startIndex, [], []);
 	};
-	self.quickSort = function() {
+	self.sort = function() {
+		console.log("started quicksort at " + new Date());
 		self.startQuickSort();
 	};
 	self.init();

@@ -14,6 +14,14 @@ $(document).ready(function() {
 			}
 			return nums;
 		};
+		self.getDescendingArray = function(numberOfElements) {
+			var nums = [];
+			while (numberOfElements > 0) {
+				nums.push(numberOfElements-1);
+				numberOfElements--;
+			}
+			return nums;
+		};		
 		self.quickSort = new QuickSortVM(self.getRandomArray);
 		self.bubbleSort = new BubbleSortVM(self.getRandomArray);
 		self.selectionSort = new SelectionSortVM(self.getRandomArray);
@@ -31,6 +39,13 @@ $(document).ready(function() {
 		
 		self.scrambleAllSame = function() {
 			var data = self.getRandomArray(50);
+			self.selectionSort.setData(data);
+			self.bubbleSort.setData(data);
+			self.quickSort.setData(data);
+		};
+		
+		self.setDescending = function() {
+			var data = self.getDescendingArray(50);
 			self.selectionSort.setData(data);
 			self.bubbleSort.setData(data);
 			self.quickSort.setData(data);

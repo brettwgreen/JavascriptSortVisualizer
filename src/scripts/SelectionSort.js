@@ -3,26 +3,38 @@ var SS_Unit = function(val) {
 	self.value = ko.observable(val);
 	self.inspecting = ko.observable(false);
 	self.currentStart = ko.observable(false);
+	self.hitCount = ko.observable(0);
+	self.inspecting.subscribe(function(newValue) {
+		if (newValue) {
+			self.hitCount(self.hitCount()+1);
+		}
+	});
 }
 var SelectionSortVM = function(randomNumsFunction) {
 	var self = this;
 	self.data = ko.observableArray([]);
 	self.getRandomNums = randomNumsFunction;
 	self.delay = ko.observable(10);
+	self.averageHits = ko.observable(0);
+	self.swapCount = ko.observable(0);
 	self.setData = function(nums) {
 		var numData = [];
 		for (var i=0; i<nums.length; i++) {
 			numData.push(new SS_Unit(nums[i]));
 		};
 		self.data(numData);
+		self.averageHits(Math.pow(nums.length,2));
 	};
 	self.init = function(initData) {
 		self.setData(self.getRandomNums());
 	};
 	self.swap = function(targetIndex, sourceIndex) {
-		var tempValue = self.data()[targetIndex].value();
-		self.data()[targetIndex].value(self.data()[sourceIndex].value())
-		self.data()[sourceIndex].value(tempValue);
+		if (targetIndex !== sourceIndex) {
+			self.swapCount(self.swapCount()+1);
+			var tempValue = self.data()[targetIndex].value();
+			self.data()[targetIndex].value(self.data()[sourceIndex].value())
+			self.data()[sourceIndex].value(tempValue);
+		}
 	};
 	self.checkSmallest = function(i) {
 		if (self.data()[i].value() < self._smallest) {
@@ -36,7 +48,15 @@ var SelectionSortVM = function(randomNumsFunction) {
 		} else {
 			self.completeSelectionSortFrom();
 		}
-	}
+	};
+	self.actualHits = ko.computed(function() {
+		var total = 0;
+		for (var i=0; i<self.data().length; i++){
+			total += self.data()[i].hitCount();
+		}
+		return total;
+	});
+	
 	self.startSelectionSortFrom = function(i) {
 		if (i > self.data().length - 1) {
 			return;
@@ -55,6 +75,11 @@ var SelectionSortVM = function(randomNumsFunction) {
 	};
 	self.sort = function() {
 		console.log("started selectionsort at " + new Date());
+		// reset hit counts
+		self.swapCount(0);
+		for (var k=0; k<self.data().length; k++){
+			self.data()[k].hitCount(0);
+		}		
 		self.startSelectionSortFrom(0);
 	}
 	self.init();

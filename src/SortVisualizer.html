@@ -12,89 +12,97 @@
   </head>
 
   <body>
-    <div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
-		<div class="data">
-			<!-- ko foreach: data -->
-			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
-			<div data-bind="visible: currentStart" class="indicator"></div>
-			<div class="clear"></div>
-			<!-- /ko -->
+	<div class="mainLayout">
+		<div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
+			<div class="data">
+				<!-- ko foreach: data -->
+				<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+				<div data-bind="visible: currentStart" class="indicator"></div>
+				<div class="clear"></div>
+				<!-- /ko -->
+			</div>
+			<div class="sortInfo">
+				<fieldset>
+					<legend>Selection Sort</legend>
+					<label>Average:</label>O(<i>n</i><sup>2</sup>)
+					<label>Worst:</label>O(<i>n</i><sup>2</sup>)
+					<label>Best:</label>O(<i>n</i><sup>2</sup>)
+				</fieldset>
+				<br />
+				<fieldset>
+					<legend>Actuals</legend>
+					<label>Inspected:</label><span data-bind="text: actualHits"></span>
+					<label>Swapped:</label><span data-bind="text: swapCount"></span>
+				</fieldset>				
+			</div>
+			<div class="sortPanel">
+				<br clear="all" /><br />
+				<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+				<button data-bind="click: sort">sort</button><br /><br />
+				<button data-bind="click: init">scramble</button>
+			</div>
 		</div>
-		<div class="sortInfo">
-			<fieldset>
-				<legend>Selection Sort</legend>
-				<label>Average:</label>O(<i>n</i><sup>2</sup>)
-				<label>Worst:</label>O(<i>n</i><sup>2</sup>)
-				<label>Best:</label>O(<i>n</i><sup>2</sup>)
-			</fieldset>
+		<div id="bubbleSort" class="sortGroup" data-bind="with: bubbleSort">
+			<div class="data">
+				<!-- ko foreach: data -->
+				<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+				<div data-bind="visible: currentStart" class="indicator"></div>
+				<div class="clear"></div>
+				<!-- /ko -->
+			</div>
+			<div class="sortInfo">
+				<fieldset>
+					<legend>Bubble Sort</legend>
+					<label>Average:</label>O(<i>n</i><sup>2</sup>)
+					<label>Worst:</label>O(<i>n</i><sup>2</sup>)
+					<label>Best:</label>O(<i>n</i>)
+				</fieldset>
+			</div>
+			<div class="sortPanel">
+				<br clear="all" /><br />
+				<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+				<button data-bind="click: sort">sort</button><br /><br />
+				<button data-bind="click: init">scramble</button>
+			</div>
 		</div>
-		<div class="sortPanel">
+		<div id="quickSort" class="sortGroup" data-bind="with: quickSort">
+			<div class="data">
+				<!-- ko foreach: data -->
+				<div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+				<div data-bind="visible: currentPivot" class="indicator"></div>
+				<div class="clear"></div>
+				<!-- /ko -->
+			</div>
+			<div class="sortInfo">
+				<fieldset>
+					<legend>QuickSort</legend>
+					<label>Average:</label>O(<i>n</i> log <i>n</i>)
+					<label>Worst:</label>O(<i>n</i><sup>2</sup>)
+					<label>Best:</label>O(<i>n</i> log <i>n</i>)
+				</fieldset>
+			</div>
+			<div class="sortPanel">
+				<br clear="all" /><br />
+				<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+				<button data-bind="click: sort">sort</button><br /><br />
+				<button data-bind="click: init">scramble</button>
+			</div>
+		</div>	
+		<div class="masterButtons">
 			<br clear="all" /><br />
-			<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
-			<button data-bind="click: sort">sort</button><br /><br />
-			<button data-bind="click: init">scramble</button>
-		</div>
-	</div>
-	<div id="bubbleSort" class="sortGroup" data-bind="with: bubbleSort">
-		<div class="data">
-			<!-- ko foreach: data -->
-			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
-			<div data-bind="visible: currentStart" class="indicator"></div>
-			<div class="clear"></div>
-			<!-- /ko -->
-		</div>
-		<div class="sortInfo">
-			<fieldset>
-				<legend>Bubble Sort</legend>
-				<label>Average:</label>O(<i>n</i><sup>2</sup>)
-				<label>Worst:</label>O(<i>n</i><sup>2</sup>)
-				<label>Best:</label>O(<i>n</i>)
-			</fieldset>
-		</div>
-		<div class="sortPanel">
+			<button data-bind="click: scrambleAll">scramble all</button>
 			<br clear="all" /><br />
-			<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
-			<button data-bind="click: sort">sort</button><br /><br />
-			<button data-bind="click: init">scramble</button>
-		</div>
-	</div>
-	<div id="quickSort" class="sortGroup" data-bind="with: quickSort">
-		<div class="data">
-			<!-- ko foreach: data -->
-			<div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
-			<div data-bind="visible: currentPivot" class="indicator"></div>
-			<div class="clear"></div>
-			<!-- /ko -->
-		</div>
-		<div class="sortInfo">
-			<fieldset>
-				<legend>QuickSort</legend>
-				<label>Average:</label>O(<i>n</i> log <i>n</i>)
-				<label>Worst:</label>O(<i>n</i><sup>2</sup>)
-				<label>Best:</label>O(<i>n</i> log <i>n</i>)
-			</fieldset>
-		</div>
-		<div class="sortPanel">
+			<button data-bind="click: scrambleAllSame">scramble all (use same data)</button>
 			<br clear="all" /><br />
-			<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
-			<button data-bind="click: sort">sort</button><br /><br />
-			<button data-bind="click: init">scramble</button>
+			<button data-bind="click: setDescending">set all inverted</button>
+			<br clear="all" /><br />
+			<button data-bind="click: setNearlySorted">set all nearly sorted</button>
+			<br clear="all" /><br />
+			<button data-bind="click: setAscending">set all sorted</button>
+			<br clear="all" /><br />		
+			<button data-bind="click: startAll" id="mainSort">sort all</button>
+			<br clear="all" /><br />
 		</div>
-	</div>	
-	<div class="sortGroup">
-		<br clear="all" /><br />
-		<button data-bind="click: scrambleAll">scramble all</button>
-		<br clear="all" /><br />
-		<button data-bind="click: scrambleAllSame">scramble all (use same data)</button>
-		<br clear="all" /><br />
-		<button data-bind="click: setDescending">set all inverted</button>
-		<br clear="all" /><br />
-		<button data-bind="click: setNearlySorted">set all nearly sorted</button>
-		<br clear="all" /><br />
-		<button data-bind="click: setAscending">set all sorted</button>
-		<br clear="all" /><br />		
-		<button data-bind="click: startAll" id="mainSort">sort all</button>
-		<br clear="all" /><br />
 	</div>
   </body>
 

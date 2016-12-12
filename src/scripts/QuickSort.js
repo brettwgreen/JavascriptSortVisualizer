@@ -5,9 +5,10 @@ var QS_Unit = function(val) {
 	self.currentPivot = ko.observable(
 		false);
 }
-var QuickSortVM = function() {
+var QuickSortVM = function(randomNumsFunction) {
 	var self = this;
 	self.data = ko.observableArray([]);
+	self.getRandomNums = randomNumsFunction;
 	self.elementCount = 50;
 	self.delay = ko.observable(10);
 	self.setData = function(nums) {
@@ -18,17 +19,7 @@ var QuickSortVM = function() {
 		self.data(numData);
 	};
 	self.init = function(initData) {
-		var count = 0;
-		var nums = [];
-		while (count < self.elementCount) {
-			var num = Math.ceil(Math.random() *
-				self.elementCount);
-			if (!nums.includes(num)) {
-				nums.push(num);
-				count++;
-			}
-		}
-		self.setData(nums);
+		self.setData(self.getRandomNums());
 	};
 	self.swap = function(targetIndex,
 		sourceIndex) {

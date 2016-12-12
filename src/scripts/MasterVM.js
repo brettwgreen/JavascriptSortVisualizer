@@ -1,9 +1,6 @@
 $(document).ready(function() {
 	var MasterVm = function() {
 		var self = this;
-		self.quickSort = new QuickSortVM();
-		self.bubbleSort = new BubbleSortVM();
-		self.selectionSort = new SelectionSortVM();
 		self.elementCount = 50;
 		self.getRandomArray = function(num) {
 			var count = 0;
@@ -17,6 +14,9 @@ $(document).ready(function() {
 			}
 			return nums;
 		};
+		self.quickSort = new QuickSortVM(self.getRandomArray);
+		self.bubbleSort = new BubbleSortVM(self.getRandomArray);
+		self.selectionSort = new SelectionSortVM(self.getRandomArray);
 		
 		self.startAll = function() {
 			self.quickSort.sort();

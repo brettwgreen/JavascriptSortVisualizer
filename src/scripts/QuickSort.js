@@ -124,6 +124,6 @@ var JsArrayViewModel = function() {
 
 var vm = new JsArrayViewModel();
 
-ko.applyBindings(vm, "#quickSort");
+ko.applyBindings(vm, document.getElementById("quickSort"));
 });
 

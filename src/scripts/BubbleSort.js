@@ -77,6 +77,6 @@ var JsArrayViewModel = function() {
 
 var vm = new JsArrayViewModel();
 
-ko.applyBindings(vm, "#bubbleSort");
+ko.applyBindings(vm, document.getElementById("bubbleSort"));
 });
 

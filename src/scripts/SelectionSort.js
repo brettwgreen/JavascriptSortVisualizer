@@ -79,6 +79,6 @@ var JsArrayViewModel = function() {
 
 var vm = new JsArrayViewModel();
 
-ko.applyBindings(vm, "#selectionSort");
+ko.applyBindings(vm, document.getElementById("selectionSort"));
 });
 

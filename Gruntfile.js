@@ -22,7 +22,10 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 8000,
-          keepalive: true
+          keepalive: true,
+		  open: {
+			  target: 'http://localhost:8000/src/SortVisualizer.html'
+		  }
         }
       }
     }

@@ -9,7 +9,6 @@ var BubbleSortVM = function(randomNumsFunction) {
 	var self = this;
 	self.data = ko.observableArray([]);
 	self.getRandomNums = randomNumsFunction;
-	self.elementCount = 50;
 	self.delay = ko.observable(10);
 	self.setData = function(nums) {
 		var numData = [];

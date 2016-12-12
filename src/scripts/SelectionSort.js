@@ -8,7 +8,6 @@ var SelectionSortVM = function(randomNumsFunction) {
 	var self = this;
 	self.data = ko.observableArray([]);
 	self.getRandomNums = randomNumsFunction;
-	self.elementCount = 50;
 	self.delay = ko.observable(10);
 	self.setData = function(nums) {
 		var numData = [];
@@ -42,7 +41,6 @@ var SelectionSortVM = function(randomNumsFunction) {
 		if (i > self.data().length - 1) {
 			return;
 		}
-		var delay = 50;
 		self._smallestIndex = i;
 		self._startingIndex = i;
 		self._smallest = self.data()[self._smallestIndex].value();

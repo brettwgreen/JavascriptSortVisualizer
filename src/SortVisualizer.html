@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script data-require="knockout@*" data-semver="3.3.0" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <link rel="stylesheet" href="styles\styles.css" />
+    <script src="scripts\SelectionSort.js"></script>
+    <script src="scripts\BubbleSort.js"></script>
+    <script src="scripts\QuickSort.js"></script>
+  </head>
+
+  <body>
+    <div id="selectionSort">
+	<h2>Selection Sort</h2>
+		<!-- ko foreach: data -->
+		<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+		<div data-bind="visible: currentStart" class="indicator"></div>
+		<div class="clear"></div>
+		<!-- /ko -->
+		
+		<br clear="all" />
+		<label for="delay">delay</label>
+		<input id="delay" type="text" data-bind="value: delay" >
+		<button data-bind="click: selectionSort">selection sort</button>
+		<button data-bind="click: init">scramble</button>
+	</div>
+	<div id="bubbleSort">
+		<h2>Bubble Sort</h2>
+		<!-- ko foreach: data -->
+		<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+		<div data-bind="visible: currentStart" class="indicator"></div>
+		<div class="clear"></div>
+		<!-- /ko -->
+		
+		<br clear="all" />
+		<label for="delay">delay</label>
+		<input id="delay" type="text" data-bind="value: delay" >
+		<button data-bind="click: bubbleSort">bubble sort</button>
+		<button data-bind="click: init">scramble</button>	
+	</div>
+	<div id="quickSort">
+    <h2>Quick Sort</h2>
+		<div class="legend">
+		  <div class="unit inspecting" style="width: 30px"></div><div class="legendLabel">scanning</div>
+		  <br>
+		  <div class="indicator"></div><div class="legendLabel">pivot</div>
+		</div>
+		<!-- ko foreach: data -->
+		<div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+		<div data-bind="visible: currentPivot" class="indicator"></div>
+		<div class="clear"></div>
+		<!-- /ko -->
+		
+		<br clear="all" />
+		<label for="delay">delay</label>
+		<input id="delay" type="text" data-bind="value: delay" >
+		<button data-bind="click: quickSort">quick sort</button>
+		<button data-bind="click: init">scramble</button>
+	</div>	
+  </body>
+
+</html>

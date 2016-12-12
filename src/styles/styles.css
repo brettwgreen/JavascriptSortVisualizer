@@ -1,0 +1,33 @@
+/* Styles go here */
+body {
+  font-family: 'Consolas';
+}
+.unit {
+  background-color: steelblue;
+  height: 5px;
+  line-height 5px;
+  margin: 0px;
+  margin-bottom: 1px;
+  border: 1px solid steelblue;
+  float: left;
+}
+
+.inspecting {
+  background-color: orange;
+}
+
+.indicator {
+  float:left;
+  width: 0; 
+  height: 0; 
+  border-top: 4px solid transparent;
+  border-bottom: 4px  solid transparent; 
+  border-right: 4px solid red; 
+  margin-left: 3px;
+}
+#delay {
+  width: 40px;
+}
+.clear {
+  clear: both;
+}

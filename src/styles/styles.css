@@ -2,6 +2,13 @@
 body {
   font-family: 'Consolas';
 }
+.sortGroup {
+	float: left;
+	width: 400px;
+}
+.data {
+	float: left;
+}
 .unit {
   background-color: steelblue;
   height: 5px;
@@ -26,8 +33,9 @@ body {
   margin-left: 3px;
 }
 #delay {
-  width: 40px;
+  width: 30px;
 }
 .clear {
   clear: both;
 }
+

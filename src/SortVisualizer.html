@@ -11,51 +11,49 @@
   </head>
 
   <body>
-    <div id="selectionSort">
+    <div id="selectionSort" class="sortGroup">
 	<h2>Selection Sort</h2>
-		<!-- ko foreach: data -->
-		<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
-		<div data-bind="visible: currentStart" class="indicator"></div>
-		<div class="clear"></div>
-		<!-- /ko -->
-		
-		<br clear="all" />
+		<div class="data">
+			<!-- ko foreach: data -->
+			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+			<div data-bind="visible: currentStart" class="indicator"></div>
+			<div class="clear"></div>
+			<!-- /ko -->
+		</div>
+		<br clear="all" /><br />
 		<label for="delay">delay</label>
 		<input id="delay" type="text" data-bind="value: delay" >
-		<button data-bind="click: selectionSort">selection sort</button>
+		<button data-bind="click: selectionSort">sort</button>
 		<button data-bind="click: init">scramble</button>
 	</div>
-	<div id="bubbleSort">
+	<div id="bubbleSort" class="sortGroup">
 		<h2>Bubble Sort</h2>
-		<!-- ko foreach: data -->
-		<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
-		<div data-bind="visible: currentStart" class="indicator"></div>
-		<div class="clear"></div>
-		<!-- /ko -->
-		
-		<br clear="all" />
+		<div class="data">
+			<!-- ko foreach: data -->
+			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+			<div data-bind="visible: currentStart" class="indicator"></div>
+			<div class="clear"></div>
+			<!-- /ko -->
+		</div>
+		<br clear="all" /><br />
 		<label for="delay">delay</label>
 		<input id="delay" type="text" data-bind="value: delay" >
-		<button data-bind="click: bubbleSort">bubble sort</button>
+		<button data-bind="click: bubbleSort">sort</button>
 		<button data-bind="click: init">scramble</button>	
 	</div>
-	<div id="quickSort">
-    <h2>Quick Sort</h2>
-		<div class="legend">
-		  <div class="unit inspecting" style="width: 30px"></div><div class="legendLabel">scanning</div>
-		  <br>
-		  <div class="indicator"></div><div class="legendLabel">pivot</div>
+	<div id="quickSort" class="sortGroup">
+		<h2>Quick Sort</h2>
+		<div class="data">
+			<!-- ko foreach: data -->
+			<div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+			<div data-bind="visible: currentPivot" class="indicator"></div>
+			<div class="clear"></div>
+			<!-- /ko -->
 		</div>
-		<!-- ko foreach: data -->
-		<div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
-		<div data-bind="visible: currentPivot" class="indicator"></div>
-		<div class="clear"></div>
-		<!-- /ko -->
-		
-		<br clear="all" />
+		<br clear="all" /><br />
 		<label for="delay">delay</label>
 		<input id="delay" type="text" data-bind="value: delay" >
-		<button data-bind="click: quickSort">quick sort</button>
+		<button data-bind="click: quickSort">sort</button>
 		<button data-bind="click: init">scramble</button>
 	</div>	
   </body>

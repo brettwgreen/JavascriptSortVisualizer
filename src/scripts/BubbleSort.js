@@ -10,20 +10,25 @@ var BubbleSortVM = function() {
 	self.data = ko.observableArray([]);
 	self.elementCount = 50;
 	self.delay = ko.observable(10);
-	self.init = function() {
+	self.setData = function(nums) {
+		var numData = [];
+		for (var i=0; i<nums.length; i++) {
+			numData.push(new BS_Unit(nums[i]));
+		};
+		self.data(numData);
+	};
+	self.init = function(initData) {
 		var count = 0;
 		var nums = [];
-		var numData = [];
 		while (count < self.elementCount) {
 			var num = Math.ceil(Math.random() *
 				self.elementCount);
 			if (!nums.includes(num)) {
 				nums.push(num);
-				numData.push(new BS_Unit(num));
 				count++;
 			}
 		}
-		self.data(numData);
+		self.setData(nums);
 	};
 	self.swap = function(targetIndex,
 		sourceIndex) {

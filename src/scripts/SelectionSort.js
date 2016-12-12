@@ -1,28 +1,33 @@
-var BS_Unit = function(val) {
+var SS_Unit = function(val) {
 	var self = this;
 	self.value = ko.observable(val);
 	self.inspecting = ko.observable(false);
-	self.currentStart = ko.observable(
-		false);
+	self.currentStart = ko.observable(false);
 }
 var SelectionSortVM = function() {
 	var self = this;
 	self.data = ko.observableArray([]);
 	self.elementCount = 50;
 	self.delay = ko.observable(10);
-	self.init = function() {
+	self.setData = function(nums) {
+		var numData = [];
+		for (var i=0; i<nums.length; i++) {
+			numData.push(new SS_Unit(nums[i]));
+		};
+		self.data(numData);
+	};
+	self.init = function(initData) {
 		var count = 0;
 		var nums = [];
-		var numData = [];
 		while (count < self.elementCount) {
-			var num = Math.ceil(Math.random() * self.elementCount);
+			var num = Math.ceil(Math.random() *
+				self.elementCount);
 			if (!nums.includes(num)) {
 				nums.push(num);
-				numData.push(new BS_Unit(num));
 				count++;
 			}
 		}
-		self.data(numData);
+		self.setData(nums);
 	};
 	self.swap = function(targetIndex, sourceIndex) {
 		var tempValue = self.data()[targetIndex].value();

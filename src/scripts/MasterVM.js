@@ -8,7 +8,12 @@ $(document).ready(function() {
 			self.quickSort.sort();
 			self.bubbleSort.sort();
 			self.selectionSort.sort();
-		}
+		};
+		self.scrambleAll = function() {
+			self.quickSort.init();
+			self.bubbleSort.init();
+			self.selectionSort.init();
+		}		
 	};
 	var vm = new MasterVm();
 	ko.applyBindings(vm);

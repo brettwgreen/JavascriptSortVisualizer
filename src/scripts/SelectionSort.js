@@ -55,7 +55,6 @@ var SelectionSortVM = function() {
 		setTimeout(self.checkSmallest, self.delay(), self._startingIndex);
 	};
 	self.completeSelectionSortFrom = function() {
-		console.log('smallest: ' + self._smallest + '[' + self._smallestIndex + ']');
 		self.swap(self._startingIndex, self._smallestIndex);
 		self.data()[self._startingIndex].currentStart(false);
 		self.startSelectionSortFrom(self._startingIndex + 1);

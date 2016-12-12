@@ -13,7 +13,7 @@
 
   <body>
     <div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
-	<h2>Selection Sort</h2>
+		<h2>Selection Sort</h2>
 		<div class="data">
 			<!-- ko foreach: data -->
 			<div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
@@ -21,11 +21,12 @@
 			<div class="clear"></div>
 			<!-- /ko -->
 		</div>
-		<br clear="all" /><br />
-		<label for="delay">delay</label>
-		<input id="delay" type="text" data-bind="value: delay" >
-		<button data-bind="click: sort">sort</button>
-		<button data-bind="click: init">scramble</button>
+		<div class="sortPanel">
+			<br clear="all" /><br />
+			<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+			<button data-bind="click: sort">sort</button><br /><br />
+			<button data-bind="click: init">scramble</button>
+		</div>
 	</div>
 	<div id="bubbleSort" class="sortGroup" data-bind="with: bubbleSort">
 		<h2>Bubble Sort</h2>
@@ -36,11 +37,12 @@
 			<div class="clear"></div>
 			<!-- /ko -->
 		</div>
-		<br clear="all" /><br />
-		<label for="delay">delay</label>
-		<input id="delay" type="text" data-bind="value: delay" >
-		<button data-bind="click: sort">sort</button>
-		<button data-bind="click: init">scramble</button>	
+		<div class="sortPanel">
+			<br clear="all" /><br />
+			<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+			<button data-bind="click: sort">sort</button><br /><br />
+			<button data-bind="click: init">scramble</button>
+		</div>
 	</div>
 	<div id="quickSort" class="sortGroup" data-bind="with: quickSort">
 		<h2>Quick Sort</h2>
@@ -51,11 +53,12 @@
 			<div class="clear"></div>
 			<!-- /ko -->
 		</div>
-		<br clear="all" /><br />
-		<label for="delay">delay</label>
-		<input id="delay" type="text" data-bind="value: delay" >
-		<button data-bind="click: sort">sort</button>
-		<button data-bind="click: init">scramble</button>
+		<div class="sortPanel">
+			<br clear="all" /><br />
+			<label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+			<button data-bind="click: sort">sort</button><br /><br />
+			<button data-bind="click: init">scramble</button>
+		</div>
 	</div>	
 	<div class="sortGroup">
 		<br clear="all" /><br />

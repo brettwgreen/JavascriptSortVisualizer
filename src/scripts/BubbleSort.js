@@ -63,6 +63,7 @@ var BubbleSortVM = function(randomNumsFunction) {
 	self.completeBubbleSortLoop =
 		function() {
 			if (self._swapOccurred) {
+				// bubble sort n-1 optimization
 				// biggest guy's at the end
 				// you don't need to look at him anymore
 				self._endIndex--;

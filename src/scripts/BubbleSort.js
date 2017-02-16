@@ -10,6 +10,7 @@ var BubbleSortVM = function(randomNumsFunction) {
 	self.data = ko.observableArray([]);
 	self.getRandomNums = randomNumsFunction;
 	self.delay = ko.observable(10);
+	self._endIndex;
 	self.setData = function(nums) {
 		var numData = [];
 		for (var i=0; i<nums.length; i++) {
@@ -30,7 +31,7 @@ var BubbleSortVM = function(randomNumsFunction) {
 			tempValue);
 	};
 	self.doTheBubble = function(i) {
-		if (i + 1 <= self.data().length - 1) {
+		if (i + 1 <= self._endIndex - 1) {
 			if (self.data()[i].value() > self.data()[
 					i + 1].value()) {
 				self.swap(i, i + 1);
@@ -39,7 +40,7 @@ var BubbleSortVM = function(randomNumsFunction) {
 		}
 		self.data()[i].inspecting(false);
 		self.data()[i].currentStart(false);
-		if (i + 1 <= self.data().length - 1) {
+		if (i + 1 <= self._endIndex - 1) {
 			self.data()[i + 1].currentStart(
 				true);
 			self.data()[i + 1].inspecting(true);
@@ -62,11 +63,15 @@ var BubbleSortVM = function(randomNumsFunction) {
 	self.completeBubbleSortLoop =
 		function() {
 			if (self._swapOccurred) {
+				// biggest guy's at the end
+				// you don't need to look at him anymore
+				self._endIndex--;
 				self.startBubbleSort();
 			}
 		};
 	self.sort = function() {
 		console.log("started bubblesort at " + new Date());
+		self._endIndex = self.data().length;
 		self.startBubbleSort();
 	}
 	self.init();

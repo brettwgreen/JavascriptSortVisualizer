@@ -73,6 +73,11 @@
         return nums;
       },
 		  startAll() {
+        for (var i=0; i<this.$children.length; i++){
+          if (this.$children[i].sort) {
+            this.$children[i].sort();
+          }
+        }
       },
 		  scrambleAll() {
         this.currentData = this.getRandomArray();

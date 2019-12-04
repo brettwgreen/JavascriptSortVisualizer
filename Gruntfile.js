@@ -28,14 +28,31 @@ module.exports = function(grunt) {
 		  }
         }
       }
+    },
+    browserify: {
+      bundle: {
+        src: 'src/scripts/vue/App.js',
+        dest: 'src/scripts/vue/vue_components.js'
+      },
+      options: {
+        browserifyOptions: {
+          debug: true
+        },
+        transform: [
+          ['vueify']
+        ]
+      }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-connect');  
-  grunt.loadNpmTasks('grunt-contrib-uglify');  
-  // Register the default tasks.
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.registerTask('build', function() {
+    grunt.task.run('browserify');
+  });
   grunt.registerTask('default', ['connect']);
 
 };

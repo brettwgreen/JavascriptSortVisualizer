@@ -1,6 +1,7 @@
 <script>
   const SelectionSort = require('./SelectionSort.vue')
   const BubbleSort = require('./BubbleSort.vue')
+  const QuickSort = require('./QuickSort.vue')
   module.exports = {
     props: {
       numberOfElements: {
@@ -17,7 +18,8 @@
     },
     components: {
       SelectionSort,
-      BubbleSort
+      BubbleSort,
+      QuickSort
     },
     mounted() {
       this.currentData = this.getRandomArray();
@@ -100,6 +102,7 @@
 	<div class="mainLayout">
 		<selection-sort v-bind:values="currentData"></selection-sort>
 		<bubble-sort v-bind:values="currentData"></bubble-sort>
+    <quick-sort v-bind:values="currentData"></quick-sort>
 		<div class="masterButtons">
 			<br clear="all" /><br />
 			<button v-on:click="scrambleAll">scramble all</button>

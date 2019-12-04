@@ -115,7 +115,7 @@ module.exports = {
         <legend>Bubble Sort</legend>
         <label>Average:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
         <label>Worst:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
-        <label>Best:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+        <label>Best:</label><div class="sortData">O(<i>n</i>)</div>
       </fieldset>
     </div>
     <div class="sortPanel">

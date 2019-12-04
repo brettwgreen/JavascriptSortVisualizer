@@ -9,8 +9,16 @@
         }
       }
     },
+    data()  {
+      return {
+        currentData: []
+      }
+    },
     components: {
       SelectionSort
+    },
+    mounted() {
+      this.currentData = this.getRandomArray();
     },
     methods: {
       getRandomArray() {
@@ -65,58 +73,36 @@
         return nums;
       },
 		  startAll() {
-        self.quickSort.sort();
-        self.bubbleSort.sort();
-        self.selectionSort.sort();
       },
 		  scrambleAll() {
-        self.quickSort.init();
-        self.bubbleSort.init();
-        self.selectionSort.init();
-      },
-		  scrambleAllSame() {
-        var data = self.getRandomArray(50);
-        self.selectionSort.setData(data);
-        self.bubbleSort.setData(data);
-        self.quickSort.setData(data);
+        this.currentData = this.getRandomArray();
       },
 		  setDescending() {
-        var data = self.getDescendingArray(50);
-        self.selectionSort.setData(data);
-        self.bubbleSort.setData(data);
-        self.quickSort.setData(data);
+        this.currentData = this.getDescendingArray();
       },
 		  setAscending() {
-        var data = self.getAscendingArray(50);
-        self.selectionSort.setData(data);
-        self.bubbleSort.setData(data);
-        self.quickSort.setData(data);
+        this.currentData = this.getAscendingArray();
       },
 		  setNearlySorted() {
-        var data = self.getNearlySortedArray(50);
-        self.selectionSort.setData(data);
-        self.bubbleSort.setData(data);
-        self.quickSort.setData(data);
+        this.currentData = this.getNearlySortedArray();
       }
     }
   }
 </script>
 <template>
 	<div class="mainLayout">
-		<selection-sort v-bind:random-nums-function="getDescendingArray"></selection-sort>
+		<selection-sort v-bind:values="currentData"></selection-sort>
 		<div class="masterButtons">
 			<br clear="all" /><br />
-			<button data-bind="click: scrambleAll">scramble all</button>
+			<button v-on:click="scrambleAll">scramble all</button>
 			<br clear="all" /><br />
-			<button data-bind="click: scrambleAllSame">scramble all (use same data)</button>
-			<br clear="all" /><br />
-			<button data-bind="click: setDescending">set all inverted</button>
-			<br clear="all" /><br />
-			<button data-bind="click: setNearlySorted">set all nearly sorted</button>
-			<br clear="all" /><br />
-			<button data-bind="click: setAscending">set all sorted</button>
+			<button v-on:click="setAscending">set all sorted</button>
 			<br clear="all" /><br />		
-			<button data-bind="click: startAll" id="mainSort">sort all</button>
+			<button v-on:click="setDescending">set all inverted</button>
+			<br clear="all" /><br />
+			<button v-on:click="setNearlySorted">set all nearly sorted</button>
+			<br clear="all" /><br />
+			<button v-on:click="startAll" id="mainSort">sort all</button>
 			<br clear="all" /><br />
 		</div>
 	</div>

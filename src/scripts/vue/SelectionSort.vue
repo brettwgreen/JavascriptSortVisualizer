@@ -1,11 +1,11 @@
 <script>
 module.exports = {
   props: {
-    randomNumsFunction: null
+    values: []
   },
   data () {
     return {
-      data: [],
+      sortObjects: [],
       delay: 10,
       averageHits: 0,
       swapCount: 0,
@@ -16,73 +16,77 @@ module.exports = {
   computed: {
     actualHits() {
       var total = 0;
-      for (var i=0; i<this.data.length; i++){
-        total += this.data[i].hitCount;
+      for (var i=0; i<this.values.length; i++){
+        total += this.values[i].hitCount;
       }
       return total;
     }
   },
+  watch: {
+    values (newValues) {
+      this.setData(newValues);
+    }
+  },
   methods: {
-    setData(nums) {
-      var numData = [];
-      for (var i=0; i<nums.length; i++) {
-        numData.push({
-          value: nums[i],
+    setData(values) {
+      var sObjects = [];
+      for (var i=0; i<this.values.length; i++) {
+        sObjects.push({
+          value: this.values[i],
           inspecting: false,
           currentStart: false,
 	        hitCount: 0
         });
       };
-      this.data = numData;
-      this.averageHits = Math.pow(nums.length,2);
+      this.sortObjects = sObjects;
+      this.averageHits = Math.pow(this.values.length,2);
     },
-    init(initData) {
-      var data = this.randomNumsFunction();
-      this.setData(data);
+    init() {
+      this.setData(this.values);
     },
     swap(targetIndex, sourceIndex) {
       if (targetIndex !== sourceIndex) {
         this.swapCount++;
-        var tempValue = this.data[targetIndex].value;
-        this.data[targetIndex].value = this.data[sourceIndex].value;
-        this.data[sourceIndex].value = tempValue;
+        var tempValue = this.sortObjects[targetIndex].value;
+        this.sortObjects[targetIndex].value = this.sortObjects[sourceIndex].value;
+        this.sortObjects[sourceIndex].value = tempValue;
       }
     },
     checkSmallest(i) {
-      if (this.data[i].value < this._smallest) {
-        this._smallest = this.data[i].value;
+      if (this.sortObjects[i].value < this._smallest) {
+        this._smallest = this.sortObjects[i].value;
         this._smallestIndex = i;
       }
-      this.data[i].inspecting = false;
-      if (i + 1 <= this.data.length - 1) {
-        this.data[i + 1].inspecting = true;
+      this.sortObjects[i].inspecting = false;
+      if (i + 1 <= this.sortObjects.length - 1) {
+        this.sortObjects[i + 1].inspecting = true;
         setTimeout(this.checkSmallest, this.delay, i + 1);
       } else {
         this.completeSelectionSortFrom();
       }
     },
     startSelectionSortFrom(i) {
-      if (i > this.data.length - 1) {
+      if (i > this.sortObjects.length - 1) {
         return;
       }
       this._smallestIndex = i;
       this._startingIndex = i;
-      this._smallest = this.data[this._smallestIndex].value;
-      this.data[this._startingIndex].inspecting = true;
-      this.data[this._startingIndex].currentStart = true;
+      this._smallest = this.sortObjects[this._smallestIndex].value;
+      this.sortObjects[this._startingIndex].inspecting = true;
+      this.sortObjects[this._startingIndex].currentStart = true;
       setTimeout(this.checkSmallest, this.delay, this._startingIndex);
     },
     completeSelectionSortFrom() {
       this.swap(this._startingIndex, this._smallestIndex);
-      this.data[this._startingIndex].currentStart = false;
+      this.sortObjects[this._startingIndex].currentStart = false;
       this.startSelectionSortFrom(this._startingIndex + 1);
     },
     sort() {
       console.log("started selectionsort at " + new Date());
       // reset hit counts
       this.swapCount = 0;
-      for (var k=0; k<this.data.length; k++){
-        this.data[k].hitCount = 0;
+      for (var k=0; k<this.sortObjects.length; k++){
+        this.sortObjects[k].hitCount = 0;
       }
       this.startSelectionSortFrom(0);
     }
@@ -95,7 +99,7 @@ module.exports = {
 <template>
   <div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
     <div class="data">
-      <span v-for="item in data" v-bind:key="item.value">
+      <span v-for="item in sortObjects" v-bind:key="item.value">
         <div class="unit" v-bind:class="{inspecting: item.inspecting}" v-bind:style="{width: (item.value+10) + 'px'}"></div>
         <div v-show="item.currentStart" class="indicator"></div>
         <div class="clear"></div>

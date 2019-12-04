@@ -14,8 +14,8 @@ module.exports = {
       delay: 10,
       averageHits: 0,
       swapCount: 0,
-      _smallest: 0,
-      _smallestIndex: 0
+      _endIndex: 0,
+      _swapOccurred: false
     }
   },
   computed: {
@@ -57,44 +57,44 @@ module.exports = {
         this.sortObjects[sourceIndex].value = tempValue;
       }
     },
-    checkSmallest(i) {
-      if (this.sortObjects[i].value < this._smallest) {
-        this._smallest = this.sortObjects[i].value;
-        this._smallestIndex = i;
+    doTheBubble(i) {
+      if (i + 1 <= this._endIndex - 1) {
+        if (this.sortObjects[i].value > this.sortObjects[i + 1].value) {
+          this.swap(i, i + 1);
+          this._swapOccurred = true;
+        }
       }
       this.sortObjects[i].inspecting = false;
-      if (i + 1 <= this.sortObjects.length - 1) {
+      this.sortObjects[i].currentStart = false;
+      if (i + 1 <= this._endIndex - 1) {
+        this.sortObjects[i + 1].currentStart = true;
         this.sortObjects[i + 1].inspecting = true;
-        setTimeout(this.checkSmallest, this.delay, i + 1);
+        setTimeout(this.doTheBubble, this.delay, i + 1);
       } else {
-        this.completeSelectionSortFrom();
+        this.completeBubbleSortLoop();
       }
     },
-    startSelectionSortFrom(i) {
-      if (i > this.sortObjects.length - 1) {
-        return;
-      }
-      this._smallestIndex = i;
-      this._startingIndex = i;
-      this._smallest = this.sortObjects[this._smallestIndex].value;
+	  startBubbleSort() {
+      this._swapOccurred = false;
+      this._startingIndex = 0;
       this.sortObjects[this._startingIndex].inspecting = true;
       this.sortObjects[this._startingIndex].currentStart = true;
-      setTimeout(this.checkSmallest, this.delay, this._startingIndex);
+      setTimeout(this.doTheBubble, this.delay, this._startingIndex);
     },
-    completeSelectionSortFrom() {
-      this.swap(this._startingIndex, this._smallestIndex);
-      this.sortObjects[this._startingIndex].currentStart = false;
-      this.startSelectionSortFrom(this._startingIndex + 1);
-    },
-    sort() {
-      console.log("started selectionsort at " + new Date());
-      // reset hit counts
-      this.swapCount = 0;
-      for (var k=0; k<this.sortObjects.length; k++){
-        this.sortObjects[k].hitCount = 0;
-      }
-      this.startSelectionSortFrom(0);
-    }
+	  completeBubbleSortLoop() {
+			if (this._swapOccurred) {
+				// bubble sort n-1 optimization
+				// biggest guy's at the end
+				// you don't need to look at him anymore
+				this._endIndex--;
+				this.startBubbleSort();
+			}
+		},
+	  sort() {
+      console.log("started bubblesort at " + new Date());
+      this._endIndex = this.sortObjects.length;
+      this.startBubbleSort();
+  	}
   },
   mounted: function(){
     this.init();
@@ -102,7 +102,7 @@ module.exports = {
 }
 </script>
 <template>
-  <div id="selectionSort" class="sortGroup">
+  <div id="bubbleSort" class="sortGroup">
     <div class="data">
       <span v-for="item in sortObjects" v-bind:key="item.value">
         <div class="unit" v-bind:class="{inspecting: item.inspecting}" v-bind:style="{width: (item.value+10) + 'px'}"></div>
@@ -112,7 +112,7 @@ module.exports = {
     </div>
     <div class="sortInfo">
       <fieldset>
-        <legend>Selection Sort</legend>
+        <legend>Bubble Sort</legend>
         <label>Average:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
         <label>Worst:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
         <label>Best:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>

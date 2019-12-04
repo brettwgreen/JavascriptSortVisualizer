@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script data-require="jquery@2.1.3" data-semver="3.4.1" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script data-require="knockout@*" data-semver="3.5.0" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <link rel="stylesheet" href="styles\styles.css" />
+    <script src="scripts\knockout\SelectionSort.js"></script>
+    <script src="scripts\knockout\BubbleSort.js"></script>
+    <script src="scripts\knockout\QuickSort.js"></script>
+    <script src="scripts\knockout\MasterVM.js"></script>
+  </head>
+
+  <body>
+	<div class="mainLayout">
+    <img src="images/knockoutjs.png">
+    <div id="main">
+      <div id="selectionSort" class="sortGroup" data-bind="with: selectionSort">
+        <div class="data">
+          <!-- ko foreach: data -->
+          <div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+          <div data-bind="visible: currentStart" class="indicator"></div>
+          <div class="clear"></div>
+          <!-- /ko -->
+        </div>
+        <div class="sortInfo">
+          <fieldset>
+            <legend>Selection Sort</legend>
+            <label>Average:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+            <label>Worst:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+            <label>Best:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+          </fieldset>
+          <br />
+          <fieldset>
+            <legend>Actuals</legend>
+            <label>Visited:</label><div class="sortData" data-bind="text: actualHits"></div>
+            <label>Swapped:</label><div class="sortData" data-bind="text: swapCount"></div>
+          </fieldset>				
+        </div>
+        <div class="sortPanel">
+          <br clear="all" /><br />
+          <label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+          <button data-bind="click: sort">sort</button><br /><br />
+          <button data-bind="click: init">scramble</button>
+        </div>
+      </div>
+      <div id="bubbleSort" class="sortGroup" data-bind="with: bubbleSort">
+        <div class="data">
+          <!-- ko foreach: data -->
+          <div class="unit" data-bind="css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+          <div data-bind="visible: currentStart" class="indicator"></div>
+          <div class="clear"></div>
+          <!-- /ko -->
+        </div>
+        <div class="sortInfo">
+          <fieldset>
+            <legend>Bubble Sort</legend>
+            <label>Average:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+            <label>Worst:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+            <label>Best:</label><div class="sortData">O(<i>n</i>)</div>
+          </fieldset>
+        </div>
+        <div class="sortPanel">
+          <br clear="all" /><br />
+          <label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+          <button data-bind="click: sort">sort</button><br /><br />
+          <button data-bind="click: init">scramble</button>
+        </div>
+      </div>
+      <div id="quickSort" class="sortGroup" data-bind="with: quickSort">
+        <div class="data">
+          <!-- ko foreach: data -->
+          <div class="unit" data-bind="attr: {'title': value}, css: {inspecting: inspecting()}, style: {width: value()+10 + 'px'}"></div>
+          <div data-bind="visible: currentPivot" class="indicator"></div>
+          <div class="clear"></div>
+          <!-- /ko -->
+        </div>
+        <div class="sortInfo">
+          <fieldset>
+            <legend>QuickSort</legend>
+            <label>Average:</label><div class="sortData">O(<i>n</i> log <i>n</i>)</div>
+            <label>Worst:</label><div class="sortData">O(<i>n</i><sup>2</sup>)</div>
+            <label>Best:</label><div class="sortData">O(<i>n</i> log <i>n</i>)</div>
+          </fieldset>
+        </div>
+        <div class="sortPanel">
+          <br clear="all" /><br />
+          <label for="delay">delay</label>: <input id="delay" type="text" data-bind="value: delay" ><br /><br />
+          <button data-bind="click: sort">sort</button><br /><br />
+          <button data-bind="click: init">scramble</button>
+        </div>
+      </div>	
+      <div class="masterButtons">
+        <br clear="all" /><br />
+        <button data-bind="click: scrambleAll">scramble all</button>
+        <br clear="all" /><br />
+        <button data-bind="click: scrambleAllSame">scramble all (use same data)</button>
+        <br clear="all" /><br />
+        <button data-bind="click: setDescending">set all inverted</button>
+        <br clear="all" /><br />
+        <button data-bind="click: setNearlySorted">set all nearly sorted</button>
+        <br clear="all" /><br />
+        <button data-bind="click: setAscending">set all sorted</button>
+        <br clear="all" /><br />		
+        <button data-bind="click: startAll" id="mainSort">sort all</button>
+        <br clear="all" /><br />
+      </div>
+    </div>
+	</div>
+  </body>
+
+</html>

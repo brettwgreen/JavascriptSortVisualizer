@@ -99,3 +99,7 @@ legend {
 #mainSort {
 	background-color: #86b788;
 }
+.vue_badge {
+  width: 100px;
+  height: 100px;
+}

@@ -1,4 +1,8 @@
 # JavascriptSortVisualizer
 Javascript driven code for visualizing sort algorithms
 
-https://brettwgreen.github.io/JavascriptSortVisualizer/src/SortVisualizer.html
+Knockout.js version:
+https://brettwgreen.github.io/JavascriptSortVisualizer/src/SortVisualizerKnockout.html
+
+Vue.js version:
+https://brettwgreen.github.io/JavascriptSortVisualizer/src/SortVisualizerVue.html

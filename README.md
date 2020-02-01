@@ -8,3 +8,4 @@ https://brettwgreen.github.io/JavascriptSortVisualizer/src/SortVisualizerKnockou
 Vue.js version:
 
 https://brettwgreen.github.io/JavascriptSortVisualizer/src/SortVisualizerVue.html
+
